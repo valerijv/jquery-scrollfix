@@ -43,6 +43,9 @@ var Shira;
              * @returns {Number}
              */
             getElementX: function (elem) {
+                if (elem == null) {
+                    return 0;
+                }
                 var x = 0;
                 do x += elem.offsetLeft;
                 while (elem = elem.offsetParent);
@@ -59,6 +62,9 @@ var Shira;
              * @returns {Number}
              */
             getElementY: function (elem) {
+                if (elem == null) {
+                    return 0;
+                }
                 var y = 0;
                 do y += elem.offsetTop;
                 while (elem = elem.offsetParent);
@@ -70,7 +76,7 @@ var Shira;
              * Fix the element
              */
             fix: function () {
-                if (!this.fixed) {
+                if (!this.fixed && $(window).scrollTop() > 0) {
                     // create the substitute
                     this.substitute = $(this.element.cloneNode(false))
                         .css('visibility', 'hidden')
